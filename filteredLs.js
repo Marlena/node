@@ -11,14 +11,15 @@
   var directoryName = process.argv[2];
   var fileExtension = '.' + process.argv[3]; //md
 
+
   fs.readdir(directoryName, function(err, files) {
     if (err) {
       throw err;
+    }
 
       var results = '';
       var i;
       var file;
-
 
       for (i = 0; i < files.length; i++) {
         file = files[i];
@@ -28,7 +29,7 @@
         }
 
       }
-    }
+
   })
 
 

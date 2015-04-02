@@ -3,7 +3,7 @@ var mymodule = require('./modular1');
 var fs = require('fs');
 
 var directoryName = process.argv[2];
-var fileExtension = '.' + process.argv[3]; //md
+var fileExtension = process.argv[3]; //md
 
 
 //output from the module will be printed out from here
