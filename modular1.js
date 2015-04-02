@@ -6,8 +6,8 @@
 
   var filteredLs = function (dirName, extensionName, callback){
 
-    var extensionName = '.' + extensionName;
 
+  return 'hello';
 
 
   };
