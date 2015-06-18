@@ -3,9 +3,16 @@
   //Write a program that uses a single asynchronous filesystem
   //operation to read a file and print the number of newlines it contains to the console (stdout),
 
-  var fs = require ('fs');
+  var filterFn = ('./modular1.js');
+  var dir = process.argv[2];
 
-  var file =  process.argv[2];
+  var filterStr =  process.argv[3];
+
+
+  filterFn(dir, filterStr, function(err, list){
+
+
+  });
 
 
   fs.readFile(file, function (err, data){

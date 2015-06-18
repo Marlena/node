@@ -7,8 +7,8 @@
       result += +process.argv[i];
       i++;
       if (process.argv[i] == undefined){
-        console.log(result)
-        break
+        console.log(result);
+        break;
       }
     }
   }

@@ -17,24 +17,11 @@
       throw err;
     }
 
-      var results = '';
-      var i;
-      var file;
-
-      //for (i = 0; i < files.length; i++) {
-        //file = files[i];
-
-       // if (path.extname(file) === fileExtension) {
-          //console.log(file);
-       // }
-
-     // }
-
       files.forEach(function (file){
-        if (path.extname(file) === fileExtension){
+        if (path.extname(file) === '.' + fileExtension){
           console.log(file);
         }
-      })
+      });
 
   })
 

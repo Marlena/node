@@ -1,16 +1,28 @@
-(function(){
+
   'use strict';
 
   var fs = require('fs');
   var path = require('path');
 
-  var filteredLs = function (dirName, extensionName, callback){
+  module.exports = function (dirName, extensionName, callback){
 
 
-  return 'hello';
+    fs.readdir(dirName, function(err, files){
+      if (err){
+        return callback(err);
+      }
+
+      files = files.filter(function (file){
+        return path.extname(file) ===  '.' + extensionName;
+      });
+
+      callback(null, files);
+
+    });
+
+
 
 
   };
 
-  module.exports = filteredLs;
-})();
+
