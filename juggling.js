@@ -2,13 +2,11 @@
   'use strict';
 
   var ConcatStream = require('concat-stream');
-  var bl = require('bl');
+  var count = 0;
   var http = require('http');
   var results = [];
+  var url;
   var urls = [process.argv[2].toString(), process.argv[3].toString(), process.argv[4].toString()];
-  var count = 0;
-  var i, url;
-
 
   for(url in urls){
     httpGet(url);
@@ -19,7 +17,6 @@
       response.pipe(ConcatStream(function(data){
         results[url] = data.toString();
         count ++;
-
         if (count == 3){
           printResults()
         }
@@ -29,9 +26,9 @@
   }
 
   function printResults(){
-    for (i = 0; i < results.length; i++){
-      console.log(results[i]);
-    }
+    results.forEach(function(result){
+      console.log(result);
+    })
   }
 
 
