@@ -4,23 +4,24 @@
   var ConcatStream = require('concat-stream');
   var bl = require('bl');
   var http = require('http');
-  var results = ['one', 'two', 'three'];
+  var results = [];
   var urls = [process.argv[2].toString(), process.argv[3].toString(), process.argv[4].toString()];
   var count = 0;
-  var i;
+  var i, url;
 
-  for (i = 0; i < urls.length; i++){
-    httpGet(i);
+
+  for(url in urls){
+    httpGet(url);
   }
 
-  function httpGet(iterator){
-    http.get(urls[iterator], function(response){
+  function httpGet(url){
+    http.get(urls[url], function(response){
       response.pipe(ConcatStream(function(data){
-        results[iterator] = data.toString();
+        results[url] = data.toString();
         count ++;
 
         if (count == 3){
-          printResults();
+          printResults()
         }
 
       }))
