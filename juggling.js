@@ -9,7 +9,7 @@
   var count = 0;
   var i;
 
-  for (i = 0; i < 2; i++){
+  for (i = 0; i < 3; i++){
     httpGet(i);
   }
 
