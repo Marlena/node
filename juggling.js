@@ -1,35 +1,38 @@
 (function(){
   'use strict';
 
-  var ConcatStream = require('concat-stream');
+  //var ConcatStream = require('concat-stream');
+  var bl = require('bl');
   var http = require('http');
-  var j = 0;
-  var result = [];
+  var results = ['one', 'two', 'three'];
   var urls = [process.argv[2].toString(), process.argv[3].toString(), process.argv[4].toString()];
-  var waiting = 0;
+  var count = 0;
+  var i;
 
-  urls.forEach(function(url){
-     waiting++;
+  for (i = 0; i < 2; i++){
+    httpGet(i);
+  }
 
-      http.get(url, function(response){
-        response.setEncoding('utf8');
+  function httpGet(iterator){
+    http.get(urls[iterator], function(response){
+      response.pipe(bl(function(err, data){
+        if (err){
+          return console.error(err);
+        }
+        results[iterator] = data.toString();
+        count ++;
 
-        response.pipe(ConcatStream(function(data){
-          waiting--;
-          result.push(data.toString());
-          complete();
-        }))
-      });
+        if (count == 3){
+          printResults();
+        }
 
-  });
+      }))
+    })
+  }
 
-  function complete(){
-    var i;
-    if (!waiting){
-      for (i = 0; i < result.length; i++){
-        console.log(result[i]);
-      }
-
+  function printResults(){
+    for (i = 0; i < results.length; i++){
+      console.log(results[i]);
     }
   }
 
