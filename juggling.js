@@ -2,8 +2,9 @@
   'use strict';
 
   var ConcatStream = require('concat-stream');
-  var count = 0;
   var http = require('http');
+
+  var count = 0;
   var results = [];
   var url;
   var urls = [process.argv[2].toString(), process.argv[3].toString(), process.argv[4].toString()];
@@ -17,18 +18,19 @@
       response.pipe(ConcatStream(function(data){
         results[url] = data.toString();
         count ++;
+
         if (count == 3){
-          printResults()
+          printResults();
         }
 
-      }))
-    })
+      }));
+    });
   }
 
   function printResults(){
     results.forEach(function(result){
       console.log(result);
-    })
+    });
   }
 
 
